@@ -1,7 +1,7 @@
 import swaggerJSDoc from "swagger-jsdoc";
 
 const options = {
-    defintion: {
+    definition: {
         openapi: '3.0.0',
         info: {
             title: '后台管理api',
