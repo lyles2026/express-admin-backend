@@ -10,12 +10,12 @@ const options = {
         },
         servers: [
             {
-                url: 'http://localhost:3000/api',
+                url: 'http://localhost:3000',
                 description: '本地开发环境'
             }
         ]
     },
-    apis:['./src/routes/*.js']
+    apis:['./src/router/*.js']
 }
 
 const specs = swaggerJSDoc(options)
