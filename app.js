@@ -4,12 +4,14 @@ import { connectDB } from "./config/db.js";
 import swaggerUi from "swagger-ui-express";
 import specs from './config/swagger.js'
 import loginRouter from './router/login.js'
+import registerRouter from './router/register.js'
 
 const app = express()
 const PORT = 3000
 
 app.use(express.json())
 app.use(loginRouter)
+app.use(registerRouter)
 app.use('/docs',  swaggerUi.serve, swaggerUi.setup(specs))
 
 
