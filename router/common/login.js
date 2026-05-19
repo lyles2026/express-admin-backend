@@ -1,7 +1,7 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken';
-import { verifyToken } from "../jwt/auth.js";
-import { userModel } from "../models/user.js";
+import { verifyToken } from "../../jwt/auth.js";
+import { userModel } from '../../models/common/user.js'
 
 const router = Router()
 
