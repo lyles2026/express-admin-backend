@@ -2,7 +2,9 @@ import { GoodsModel } from "../../models/shop/good";
 import { verifyToken } from "../../jwt/auth";
 import { Router } from "express";
 
-router.get('/', async (req, res) => {
+const router = Router()
+
+router.get('/goods', async (req, res) => {
     const goods = await GoodsModel.find()
     res.json({
         code: 200,
@@ -10,13 +12,13 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/goods/:id', async (req, res) => {
     const goods = await GoodsModel.findById(req.params.id)
      res.json({ code: 200, data: goods })
 })
 
 
-router.post('/', verifyToken, async (req, res) => {
+router.post('/goods', verifyToken, async (req, res) => {
     if (req.user.role !== 'admin') {
         return res.status(403).json({ code: 403, message: '无权限' })
     }
@@ -24,7 +26,7 @@ router.post('/', verifyToken, async (req, res) => {
     res.json({ code: 201, data: goods })
 })
 
-router.put('/:id', verifyToken, async (req, res) => {
+router.put('/goods/:id', verifyToken, async (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ code: 403, message: '无权限' })
   }
@@ -32,7 +34,7 @@ router.put('/:id', verifyToken, async (req, res) => {
   res.json({ code: 200, data: goods })
 })
 
-router.delete('/:id', verifyToken, async (req, res) => {
+router.delete('/goods/:id', verifyToken, async (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ code: 403, message: '无权限' })
   }
