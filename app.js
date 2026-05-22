@@ -8,6 +8,7 @@ import registerRouter from './router/common/register.js'
 import menuRouter from './router/static/menuConfig.js'
 import shopRouter from './router/static/shopConfig.js'
 import goodsRouter from './router/shop/shop.js'
+import categoryRouter from './router/shop/category.js'
 
 const app = express()
 const PORT = 3000
@@ -19,6 +20,7 @@ app.use(registerRouter)
 app.use(menuRouter)
 app.use(shopRouter)
 app.use(goodsRouter)
+app.use(categoryRouter)
 app.use('/docs',  swaggerUi.serve, swaggerUi.setup(specs))
 
 
