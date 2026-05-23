@@ -12,6 +12,14 @@ router.get('/admin/users', verifyToken, async (req, res) => {
   res.json({ code: 200, data: users })
 })
 
+router.get('/admin/admins', verifyToken, async (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ code: 403, message: '无权限' })
+  }
+  const users = await userModel.find({ role: 'admin' })
+  res.json({ code: 200, data: users })
+})
+
 router.post('/admin/users', verifyToken, async (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ code: 403, message: '无权限' })

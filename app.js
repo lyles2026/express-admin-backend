@@ -12,6 +12,12 @@ import categoryRouter from './router/shop/category.js'
 import sizeRouter from './router/shop/size.js'
 import couponRouter from './router/shop/coupon.js'
 import vipRouter from './router/shop/vip.js'
+import orderRouter from './router/shop/order.js'
+import afterSaleRouter from './router/shop/afterSale.js'
+import permissionRouter from './router/shop/permission.js'
+import roleRouter from './router/shop/role.js'
+import { seedPermissions } from './config/seedPermission.js'
+import { seedRoles } from './config/seedRole.js'
 import adminUserRouter from './router/common/adminUser.js'
 
 const app = express()
@@ -28,6 +34,10 @@ app.use(categoryRouter)
 app.use(sizeRouter)
 app.use(couponRouter)
 app.use(vipRouter)
+app.use(orderRouter)
+app.use(afterSaleRouter)
+app.use(permissionRouter)
+app.use(roleRouter)
 app.use(adminUserRouter)
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
 
@@ -35,6 +45,8 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 const startServer = async () => {
     await connectDB()
+    await seedPermissions()
+    await seedRoles()
 
     app.listen(PORT, () => {
         console.log(`🚀 服务器运行在 http://localhost:${PORT}`)
