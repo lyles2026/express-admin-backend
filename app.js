@@ -16,8 +16,14 @@ import orderRouter from './router/shop/order.js'
 import afterSaleRouter from './router/shop/afterSale.js'
 import permissionRouter from './router/shop/permission.js'
 import roleRouter from './router/shop/role.js'
+import distributorRouter from './router/shop/distributor.js'
+import distOrderRouter from './router/shop/distOrder.js'
+import commissionRouter from './router/shop/commission.js'
 import { seedPermissions } from './config/seedPermission.js'
 import { seedRoles } from './config/seedRole.js'
+import { seedDistributors } from './config/seedDistributor.js'
+import { seedDistOrders } from './config/seedDistOrder.js'
+import { seedCommissions } from './config/seedCommission.js'
 import adminUserRouter from './router/common/adminUser.js'
 
 const app = express()
@@ -38,6 +44,9 @@ app.use(orderRouter)
 app.use(afterSaleRouter)
 app.use(permissionRouter)
 app.use(roleRouter)
+app.use(distributorRouter)
+app.use(distOrderRouter)
+app.use(commissionRouter)
 app.use(adminUserRouter)
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
 
@@ -47,6 +56,9 @@ const startServer = async () => {
     await connectDB()
     await seedPermissions()
     await seedRoles()
+    await seedDistributors()
+    await seedDistOrders()
+    await seedCommissions()
 
     app.listen(PORT, () => {
         console.log(`🚀 服务器运行在 http://localhost:${PORT}`)
