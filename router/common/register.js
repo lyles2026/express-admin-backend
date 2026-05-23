@@ -30,15 +30,20 @@ const router = Router()
 
 router.post('/register', async (req, res) => {
 
-    const { username, password } = req.body
-    const adminUsers = process.env.ADMIN_USERS?.split(',') || []
-
-    const role = adminUsers.includes(username) ? 'admin' : 'user'
+    const { username, password, role: roleZh } = req.body
+    // 前端传中文角色名，映射为英文（用于登录验证）
+    const role = roleZh === '管理员' ? 'admin' : 'user'
+    const now = new Date()
+    const createdAt = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`
 
     const newUser = await userModel.create({
         username,
         password,
-        role
+        nickname: username,
+        phone: req.body.phone || '',
+        email: req.body.email || '',
+        role,
+        createdAt
     })
 
     res.json({
