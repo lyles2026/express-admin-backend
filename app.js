@@ -19,12 +19,19 @@ import roleRouter from './router/shop/role.js'
 import distributorRouter from './router/shop/distributor.js'
 import distOrderRouter from './router/shop/distOrder.js'
 import commissionRouter from './router/shop/commission.js'
+import galleryRouter from './router/shop/gallery.js'
+import noticeRouter from './router/shop/notice.js'
 import { seedPermissions } from './config/seedPermission.js'
 import { seedRoles } from './config/seedRole.js'
 import { seedDistributors } from './config/seedDistributor.js'
 import { seedDistOrders } from './config/seedDistOrder.js'
 import { seedCommissions } from './config/seedCommission.js'
+import { seedGallery } from './config/seedGallery.js'
+import { seedNotices } from './config/seedNotice.js'
 import adminUserRouter from './router/common/adminUser.js'
+import uploadRouter from './router/common/upload.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 const app = express()
 const PORT = 3000
@@ -47,6 +54,12 @@ app.use(roleRouter)
 app.use(distributorRouter)
 app.use(distOrderRouter)
 app.use(commissionRouter)
+app.use(galleryRouter)
+app.use(noticeRouter)
+app.use(uploadRouter)
+// 静态文件服务
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 app.use(adminUserRouter)
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
 
@@ -59,6 +72,8 @@ const startServer = async () => {
     await seedDistributors()
     await seedDistOrders()
     await seedCommissions()
+    await seedGallery()
+    await seedNotices()
 
     app.listen(PORT, () => {
         console.log(`🚀 服务器运行在 http://localhost:${PORT}`)
