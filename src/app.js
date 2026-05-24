@@ -31,6 +31,7 @@ import { seedCommissions } from './config/seedCommission.js'
 import { seedGallery } from './config/seedGallery.js'
 import { seedNotices } from './config/seedNotice.js'
 import { seedPageConfigs } from './config/seedPageConfig.js'
+import { seedAdminUser } from './config/seedAdminUser.js'
 import adminUserRouter from './router/common/adminUser.js'
 import uploadRouter from './router/common/upload.js'
 import path from 'path'
@@ -85,6 +86,7 @@ const startServer = async () => {
     await seedGallery()
     await seedNotices()
     await seedPageConfigs()
+    await seedAdminUser()
 
     app.listen(PORT, '0.0.0.0', () => {
         console.log(`🚀 服务器运行在 http://localhost:${PORT}`)
