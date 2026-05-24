@@ -21,6 +21,7 @@ import distOrderRouter from './router/shop/distOrder.js'
 import commissionRouter from './router/shop/commission.js'
 import galleryRouter from './router/shop/gallery.js'
 import noticeRouter from './router/shop/notice.js'
+import pageConfigRouter from './router/shop/pageConfig.js'
 import { seedPermissions } from './config/seedPermission.js'
 import { seedRoles } from './config/seedRole.js'
 import { seedDistributors } from './config/seedDistributor.js'
@@ -28,6 +29,7 @@ import { seedDistOrders } from './config/seedDistOrder.js'
 import { seedCommissions } from './config/seedCommission.js'
 import { seedGallery } from './config/seedGallery.js'
 import { seedNotices } from './config/seedNotice.js'
+import { seedPageConfigs } from './config/seedPageConfig.js'
 import adminUserRouter from './router/common/adminUser.js'
 import uploadRouter from './router/common/upload.js'
 import path from 'path'
@@ -56,6 +58,7 @@ app.use(distOrderRouter)
 app.use(commissionRouter)
 app.use(galleryRouter)
 app.use(noticeRouter)
+app.use(pageConfigRouter)
 app.use(uploadRouter)
 // 静态文件服务
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -74,6 +77,7 @@ const startServer = async () => {
     await seedCommissions()
     await seedGallery()
     await seedNotices()
+    await seedPageConfigs()
 
     app.listen(PORT, () => {
         console.log(`🚀 服务器运行在 http://localhost:${PORT}`)
