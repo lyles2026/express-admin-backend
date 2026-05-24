@@ -79,7 +79,7 @@ const startServer = async () => {
     await seedNotices()
     await seedPageConfigs()
 
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`🚀 服务器运行在 http://localhost:${PORT}`)
         console.log(`📚 API 文档: http://localhost:${PORT}/docs`);
 
