@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://host.docker.internal:27017/mydb')
+        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/mydb')
         console.log('MongoDB 连接成功!');
     } catch (error) {
         console.error('Database connection error:', error);
