@@ -1,4 +1,4 @@
-import { GoodsModel } from "../../models/shop/good";
+import { GoodsModel } from "../../models/shop/good.js";
 import { verifyToken } from "../../jwt/auth";
 import { Router } from "express";
 
