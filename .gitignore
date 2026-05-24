@@ -1,0 +1,34 @@
+# 依赖目录
+node_modules/
+
+# pnpm
+.pnpm-store/
+
+# 日志
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 测试覆盖率
+coverage/
+
+# 构建输出
+dist/
+build/
+*.tsbuildinfo
