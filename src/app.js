@@ -2,6 +2,7 @@ import express from "express";
 import { connectDB } from "./config/db.js";
 import cors from 'cors'
 import swaggerUi from "swagger-ui-express";
+import swaggerUiDist from "swagger-ui-dist";
 import specs from './config/swagger.js'
 import loginRouter from './router/common/login.js'
 import registerRouter from './router/common/register.js'
@@ -64,7 +65,13 @@ app.use(uploadRouter)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 app.use(adminUserRouter)
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
+// Swagger 文档（本地资源，不依赖 CDN）
+const swaggerDistPath = swaggerUiDist.getAbsoluteFSPath()
+app.use('/docs/assets', express.static(swaggerDistPath))
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  customCssUrl: '/docs/assets/swagger-ui.css',
+  customJs: '/docs/assets/swagger-ui-bundle.js'
+}))
 
 
 
