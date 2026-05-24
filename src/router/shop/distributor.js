@@ -1,6 +1,6 @@
 import { DistributorModel } from "../../models/shop/distributor.js";
 import { CommissionModel } from "../../models/shop/commission.js";
-import { verifyToken } from "../../jwt/auth";
+import { verifyToken } from "../../jwt/auth.js";
 import { Router } from "express";
 
 const router = Router()

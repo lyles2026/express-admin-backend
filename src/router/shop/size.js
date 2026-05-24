@@ -1,5 +1,5 @@
-import { SizeModel } from "../../models/shop/size";
-import { verifyToken } from "../../jwt/auth";
+import { SizeModel } from "../../models/shop/size.js";
+import { verifyToken } from "../../jwt/auth.js";
 import { Router } from "express";
 
 const router = Router()

@@ -1,5 +1,5 @@
 import { NoticeModel } from "../../models/shop/notice.js";
-import { verifyToken } from "../../jwt/auth";
+import { verifyToken } from "../../jwt/auth.js";
 import { Router } from "express";
 
 const router = Router()

@@ -1,5 +1,5 @@
 import { AfterSaleModel } from "../../models/shop/afterSale.js";
-import { verifyToken } from "../../jwt/auth";
+import { verifyToken } from "../../jwt/auth.js";
 import { Router } from "express";
 
 const router = Router()

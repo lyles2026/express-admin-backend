@@ -1,5 +1,5 @@
 import { RoleModel } from "../../models/shop/role.js";
-import { verifyToken } from "../../jwt/auth";
+import { verifyToken } from "../../jwt/auth.js";
 import { Router } from "express";
 
 const router = Router()
